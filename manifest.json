@@ -1,0 +1,16 @@
+{
+    "manifest_version": 1,
+    "name": "ArtistAllSongs", 
+    "version": "0.0.1",
+    "author": "thy646742", 
+    "description": "Adds all songs tab on artist page",
+    "betterncm_version": ">=0.2.5",
+    "preview": "preview.png",
+    "injects": {
+        "Main": [ 
+            {
+                "file": "./dist/main.js"
+            }
+        ]
+    }
+}

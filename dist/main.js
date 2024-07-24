@@ -1,1 +1,1 @@
-(()=>{function n(){return h("div",null,h("h1",null,"BetterNCM Plugin Config"))}plugin.onConfig(()=>{let e=document.createElement("div");return ReactDOM.render(n(),e),e});})();
+(()=>{function n(){return h("div",null,h("h1",null,"BetterNCM Plugin Config"))}plugin.onLoad(async()=>{let e=await betterncm.app.getBetterNCMVersion();console.log("hello?!"),console.log(e),alert("hi qwq")});plugin.onConfig(()=>{let e=document.createElement("div");return ReactDOM.render(n(),e),e});})();

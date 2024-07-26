@@ -108,6 +108,14 @@ const AllSongsPage = () => {
                                             <div className="td col title">
                                                 <span className="tit s-fc1" title={song.name}>
                                                     {song.name}
+                                                    &nbsp;
+                                                    {song.tns ? (<>&nbsp;<span className="s-fc4">({song.tns[0]})</span></>) : ""}
+                                                    {song.alia.length >= 1 ? (<>&nbsp;<span className="s-fc4">({song.alia[0]})</span></>) : ""}
+                                                    {song.fee === 1 ? (<i className="lose u-micn u-micn-vip"></i>) : ""}
+                                                    {song.sq && !song.hr ? (<i className="hq u-micn u-micn-sq"></i>) : ""}
+                                                    {song.hr ? (<i className="SpriteIcon SpriteIcon_hires"></i>) : ""}
+                                                    { /* the MV here doesn't have normal interactions, might fix later... */ }
+                                                    {song.mv != 0 ? (<i className="u-micn u-micn-mv mv z-off f-cp" data-mvid={song.mv} data-tid={song.id}></i>) : ""}
                                                 </span>
                                             </div>
                                             <div className="td col ellipsis s-fc3 f-pr" title={song.ar.map(author => (author.name)).join(" / ")}>

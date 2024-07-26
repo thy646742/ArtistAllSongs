@@ -1,40 +1,62 @@
 import { Config } from './ui/config';
 import { AllSongsPage } from './AllSongsPage';
+import { clearScreenDown } from 'readline';
 
-plugin.onLoad(async () => {
-    new MutationObserver(() => {
-        // Check for the tabs
-        if(!document.querySelector('.m-yrsh.g-wrap1.q-lrc .u-tab2 ul li')){
-            console.log('not found');
+plugin.onLoad(() => {
+    window.addEventListener('hashchange', async () => {
+        if(!window.location.href.startsWith("orpheus://orpheus/pub/app.html#/m/artist")){
             return;
         }
-        if(document.querySelector('.m-yrsh.g-wrap1.q-lrc .u-tab2 ul li #allsongs')){
+        const artistId = new URLSearchParams(window.location.href.split('?')[1]).get("id");
+        await betterncm.utils.waitForElement('.m-yrsh.g-wrap1.q-lrc .u-tab2 ul li');
+
+        if(document.querySelector('.m-yrsh.g-wrap1.q-lrc .u-tab2 ul li #allsongs-artistid-' + artistId)){
             console.log('created already');
             return;
         }
 
-        // Create a new tab
+        if(document.getElementById('allsongs-tab')){
+            document.getElementById('allsongs-tab').remove();
+        }
+        if(document.getElementById('allsongs-page-root')){
+            document.getElementById('allsongs-page-root').remove();
+        }
+        
         let allSongsText = document.createElement('a');
-        allSongsText.className = 'j-flag';
-        allSongsText.id = 'allsongs';
+        allSongsText.className = 'j-flxg';
+        allSongsText.id = 'allsongs-artistid-' + artistId;
         allSongsText.innerText = '全部歌曲';
         let allSongsTab = document.createElement('li');
         allSongsTab.appendChild(allSongsText);
+        allSongsTab.id = 'allsongs-tab';
         document.querySelector('.m-yrsh.g-wrap1.q-lrc .u-tab2 ul li').parentNode.appendChild(allSongsTab);
         console.log('created');
 
-        // Render component on click
-        allSongsText.addEventListener('click', (event) => {
-            event.preventDefault();
-            //link add class z-sel
-            document.getElementById('allsongs').className = 'j-flag z-sel';
-            const contentDiv = document.querySelector('nav.u-tab2.f-ff2.f-cb').nextElementSibling;
-            contentDiv.innerHTML = '<div id=all-songs-page-root></div>';
-            ReactDOM.render(<AllSongsPage/>, document.getElementById('all-songs-page-root'));
+        const root = document.createElement("div");
+        root.id = 'allsongs-page-root';
+        root.style.display = 'none';
+        ReactDOM.render(<AllSongsPage artistId={artistId} />, root);
+        document.querySelector('.m-yrsh.g-wrap1.q-lrc').appendChild(root);
+
+        const artistTabs = document.querySelector('.m-yrsh.g-wrap1.q-lrc .u-tab2 ul');
+        artistTabs.addEventListener('click', event => {
+            const targetTabText = event.target as Element;
+            artistTabs.querySelectorAll('.j-flxg').forEach(tabText => {
+                console.log(tabText);
+                tabText.classList.remove('z-sel');
+            });
+            targetTabText.classList.add('z-sel');
+            const originalPage = document.querySelector(".m-yrsh.g-wrap1.q-lrc div.q-lrc") as HTMLDivElement;
+            if(targetTabText.matches('#allsongs-artistid-' + artistId)){
+                root.style.display = null;
+                originalPage.style.display = 'none';
+            }
+            else{
+                root.style.display = 'none';
+                originalPage.style.display = null;
+            }
         });
-    }).observe(
-        await betterncm.utils.waitForElement('.m-yrsh.g-wrap1.q-lrc'), { childList: true, subtree: true }
-    );
+    });
 });
 
 plugin.onConfig(() => {

@@ -1,11 +1,10 @@
 import { weapi } from './encrypt';
 import axios from 'axios';
 
-const AllSongsPage = () => {
+const AllSongsPage = ({ artistId }) => {
     const [ songList, setSongList ] = React.useState([]);
     const [ currentPage, setCurrentPage ] = React.useState(1);
     const [ pageLength, setPageLength ] = React.useState(20);
-    const artistId = new URLSearchParams(window.location.href.split('?')[1]).get("id");
 
     const data = {
         id: artistId,
@@ -21,8 +20,8 @@ const AllSongsPage = () => {
         const sendRequest = async () => {
             const encryptedData = weapi(data);
             const requestConfig = {
-                method: "POST",
-                url: "http://music.163.com/weapi/v1/artist/songs",
+                method: 'POST',
+                url: 'http://music.163.com/weapi/v1/artist/songs',
                 data: new URLSearchParams(encryptedData).toString()
             };
             try {

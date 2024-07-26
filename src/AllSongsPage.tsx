@@ -4,7 +4,7 @@ import axios from 'axios';
 const AllSongsPage = () => {
     const [ songList, setSongList ] = React.useState([]);
     const [ currentPage, setCurrentPage ] = React.useState(1);
-    const [ pageLength, setPageLength ] = React.useState(10);
+    const [ pageLength, setPageLength ] = React.useState(20);
     const artistId = new URLSearchParams(window.location.href.split('?')[1]).get("id");
 
     const data = {
@@ -85,16 +85,22 @@ const AllSongsPage = () => {
                                     <li
                                         className="itm j-item j-impress"
                                         data-res-menu="true"
+                                        data-res-type="4"
+                                        data-res-id={song.id}
                                     >
                                         <span className="playstate u-micn u-plyst"></span>
                                         <span
                                             title="喜欢"
                                             className="z-off ico z-first u-micn u-micn-love f-cp s-fc3"
                                             data-res-action="like"
+                                            data-res-type="4"
+                                            data-res-id={song.id}
                                         ></span>
                                         <span
                                             className="z-off ico z-dis"
                                             data-res-action="download"
+                                            data-res-type="4"
+                                            data-res-id={song.id}
                                         >
                                             <span className="u-micn u-micn-dld f-cp s-fc3"></span>
                                         </span>

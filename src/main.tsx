@@ -45,7 +45,6 @@ plugin.onLoad(() => {
         artistTabs.addEventListener('click', event => {
             const targetTabText = event.target as Element;
             artistTabs.querySelectorAll('.j-flxg').forEach(tabText => {
-                console.log(tabText);
                 tabText.classList.remove('z-sel');
             });
             targetTabText.classList.add('z-sel');

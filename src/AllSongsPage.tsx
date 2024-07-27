@@ -1,15 +1,17 @@
 import { weapi } from './encrypt';
 import axios from 'axios';
+import { PageController } from './PageController';
 
 const AllSongsPage = ({ artistId }) => {
     const [ songList, setSongList ] = React.useState([]);
     const [ currentPage, setCurrentPage ] = React.useState(1);
     const [ pageLength, setPageLength ] = React.useState(20);
+    const [ totalSongs, setTotalSongs ] = React.useState(0);
 
     const data = {
         id: artistId,
         order: "hot",
-        offset: (currentPage - 1) * 30,
+        offset: (currentPage - 1) * pageLength,
         limit: pageLength,
         csrf_token: '',
         private_cloud: true,
@@ -26,17 +28,28 @@ const AllSongsPage = ({ artistId }) => {
             };
             try {
                 const response = await axios(requestConfig);
+                setTotalSongs(response.data.total);
                 setSongList(response.data.songs);
             } catch (error) {
-                setSongList(["Error!"]);
+                setSongList(['Error!']);
+                console.log('Error fetching song list! [ArtistAllSongs]');
             }
         }
         sendRequest();
-    }, []);
+    }, [ pageLength, currentPage ]);
 
-    React.useEffect(() => {
-        console.log(songList);
-    });
+    const onPageChange = operation => {
+        const maxPages = Math.ceil(totalSongs / pageLength);
+        if(operation === 'prev' && currentPage != 1){
+            setCurrentPage(currentPage - 1);
+        }
+        if(operation === 'next' && currentPage != maxPages){
+            setCurrentPage(currentPage + 1);
+        }
+        if(operation >= 1 && operation <= maxPages){
+            setCurrentPage(operation);
+        }
+    }
 
     // It seems like the data-res like attributes are for providing parameters for interactions
     // But some of them are also detected for styling...
@@ -143,6 +156,7 @@ const AllSongsPage = ({ artistId }) => {
                             }
                         </div>
                     </div>
+                    <PageController currentPage={currentPage} maxPages={Math.ceil(totalSongs / pageLength)} onPageChange={onPageChange} />
                 </div>
             </ul>
         </div>

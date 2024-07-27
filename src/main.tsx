@@ -1,8 +1,12 @@
-import { Config } from './ui/config';
+import { Config } from './Config';
 import { AllSongsPage } from './AllSongsPage';
-import { clearScreenDown } from 'readline';
 
 plugin.onLoad(() => {
+    if(localStorage.getItem('artist-all-songs-disable-plugin') === 'true'){
+        console.log('ArtistAllSongs plugin disabled!');
+        return;
+    }
+
     window.addEventListener('hashchange', async () => {
         if(!window.location.href.startsWith("orpheus://orpheus/pub/app.html#/m/artist")){
             return;
@@ -57,10 +61,11 @@ plugin.onLoad(() => {
             }
         });
     });
+    console.log('ArtistAllSongs loaded complete!')
 });
 
 plugin.onConfig(() => {
     const root = document.createElement('div');
-    ReactDOM.render(<Config/>, root);
+    ReactDOM.render(<Config />, root);
     return root;
 });

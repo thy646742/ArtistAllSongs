@@ -14,7 +14,7 @@ const Config = () => {
         <div>
             <input type="checkbox" checked={disabled} onChange={switchOnChange}/>
             &nbsp;
-            <span>禁用插件</span>
+            <span>禁用插件(重载后生效)</span>
         </div>
     );
 }

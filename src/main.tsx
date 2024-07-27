@@ -11,11 +11,10 @@ plugin.onLoad(() => {
         if(!window.location.href.startsWith("orpheus://orpheus/pub/app.html#/m/artist")){
             return;
         }
-        const artistId = new URLSearchParams(window.location.href.split('?')[1]).get("id");
+        const artistId = new URLSearchParams(window.location.href.split('?')[1]).get('id');
         await betterncm.utils.waitForElement('.m-yrsh.g-wrap1.q-lrc .u-tab2 ul li');
 
         if(document.querySelector('.m-yrsh.g-wrap1.q-lrc .u-tab2 ul li #allsongs-artistid-' + artistId)){
-            console.log('created already');
             return;
         }
 
@@ -61,7 +60,7 @@ plugin.onLoad(() => {
             }
         });
     });
-    console.log('ArtistAllSongs loaded complete!')
+    console.log('ArtistAllSongs loaded complete!');
 });
 
 plugin.onConfig(() => {

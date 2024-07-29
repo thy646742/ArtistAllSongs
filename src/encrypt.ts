@@ -50,17 +50,4 @@ const weapi = (object) => { // from NeteaseCloudMusicApi
     }
 }
 
-/*
-Object Example:
-{
-    id: '114514',
-    private_cloud: 'true',
-    work_type: 1,
-    order: 'hot',
-    offset: 0,
-    limit: 100,
-    csrf_token: ''
-}
-*/
-
 export { weapi };

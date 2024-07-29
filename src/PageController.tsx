@@ -38,7 +38,7 @@ const PageController = ({ currentPage, maxPages , onPageChange }) => {
                 }}
                 onChange={event => setPageTarget(parseInt(event.target.value, 10))}
             />
-            <a className="zbtn" onClick={() => onPageChange(pageTarget)}>跳转</a>
+            <a className="zpgi" onClick={() => onPageChange(pageTarget)}>跳转</a>
         </div>
     );
 };

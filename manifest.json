@@ -1,11 +1,14 @@
 {
     "manifest_version": 1,
-    "name": "ArtistAllSongs", 
-    "version": "0.0.1",
-    "author": "thy646742", 
+    "name": "ArtistAllSongs",
+    "slug": "artist-all-songs",
+    "version": "0.1.0",
+    "betterncm_version": ">=1.3.3",
+    "author": "thy646742",
     "description": "Adds all songs tab on artist page",
-    "betterncm_version": ">=0.2.5",
     "preview": "preview.png",
+    "type": "extension",
+    "ncm3-comatible": "false",
     "injects": {
         "Main": [ 
             {

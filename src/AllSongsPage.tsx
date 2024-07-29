@@ -10,7 +10,7 @@ const AllSongsPage = ({ artistId }) => {
 
     const data = {
         id: artistId,
-        order: "hot",
+        order: 'hot',
         offset: (currentPage - 1) * pageLength,
         limit: pageLength,
         csrf_token: '',
@@ -32,7 +32,7 @@ const AllSongsPage = ({ artistId }) => {
                 setSongList(response.data.songs);
             } catch (error) {
                 setSongList(['Error!']);
-                console.log('Error fetching song list! [ArtistAllSongs]');
+                console.error('Error fetching song list! [ArtistAllSongs]');
             }
         }
         sendRequest();

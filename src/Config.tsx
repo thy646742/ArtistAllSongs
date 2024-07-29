@@ -15,6 +15,8 @@ const Config = () => {
             <input type="checkbox" checked={disabled} onChange={switchOnChange}/>
             &nbsp;
             <span>禁用插件(重载后生效)</span>
+            <br/><br/>
+            <span style={{ userSelect: "text" }}>Github仓库地址: https://github.com/thy646742/ArtistAllSongs</span>
         </div>
     );
 }

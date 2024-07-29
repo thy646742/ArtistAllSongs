@@ -6,7 +6,7 @@
     "author_link": "https://github.com/thy646742/ArtistAllSongs",
     "description": "Adds all songs tab on artist page",
     "betterncm_version": ">=1.0.0",
-    "preview": "preview.png",
+    "preview": "preview.jpg",
     "type": "extension",
     "requirements": [],
     "injects": {

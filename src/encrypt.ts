@@ -33,7 +33,7 @@ const aesEncrypt = (text, mode, key, iv, format = 'base64') => {
     return encrypted.ciphertext.toString().toUpperCase()
 }
 
-const weapi = (object) => { // from NeteaseCloudMusicApi
+const weapi = (object) => {
     const text = JSON.stringify(object)
     let secretKey = ''
     for (let i = 0; i < 16; i++) {

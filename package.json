@@ -1,12 +1,10 @@
 {
-  "name": "ArtistAllSongs",
-  "version": "1.0.0",
-  "description": "Adds all songs tab on artist page",
+  "name": "artist-all-songs",
+  "version": "0.1.1",
   "main": "index.js",
-  "repository": "https://github.com/BetterNCM/boilerplate",
+  "repository": "https://github.com/thy646742/ArtistAllSongs",
   "author": "thy646742 <thy646742@163.com>",
-  "license": "GPL-3.0-or-later",
-  "private": false,
+  "private": true,
   "dependencies": {
     "axios": "^1.7.2",
     "crypto-js": "^4.2.0",
@@ -19,8 +17,8 @@
     "esbuild": "^0.17.13"
   },
   "scripts": {
-    "build:dev": "esbuild ./src/main.tsx ./src/startup_script.ts --bundle --outdir=dist --sourcemap=inline --watch --target=chrome91",
-    "build": "esbuild ./src/main.tsx ./src/startup_script.ts --bundle --minify --outdir=dist --target=chrome91",
+    "build:dev": "esbuild ./src/main.tsx --bundle --outdir=dist --sourcemap=inline --watch --target=chrome91",
+    "build": "esbuild ./src/main.tsx --bundle --minify --outdir=dist --target=chrome91",
     "analyze": "esbuild --bundle ./src/main.tsx --outdir=dist --minify --analyze=verbose"
   }
 }

@@ -15,10 +15,11 @@ plugin.onLoad(() => {
         await betterncm.utils.waitForElement('.m-yrsh.g-wrap1.q-lrc .u-tab2 ul li');
 
         if(document.querySelector('.m-yrsh.g-wrap1.q-lrc .u-tab2 ul li #allsongs-artistid-' + artistId)){
+            document.querySelector('.m-yrsh.g-wrap1.q-lrc .u-tab2 ul li #allsongs-artistid-' + artistId).classList.remove('z-sel');
             return;
         }
 
-        (document.querySelector(".m-yrsh.g-wrap1.q-lrc div.q-lrc") as HTMLDivElement).style.display = null;
+        (document.querySelector('.m-yrsh.g-wrap1.q-lrc div.q-lrc') as HTMLDivElement).style.display = null;
 
         if(document.getElementById('allsongs-tab')){
             document.getElementById('allsongs-tab').remove();

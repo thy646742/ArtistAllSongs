@@ -127,7 +127,7 @@ const AllSongsPage = ({ artistId }) => {
                                                         {song.fee === 1 ? (<i className="lose u-micn u-micn-vip"></i>) : ""}
                                                         {song.sq && !song.hr ? (<i className="hq u-micn u-micn-sq"></i>) : ""}
                                                         {song.hr ? (<i className="SpriteIcon SpriteIcon_hires"></i>) : ""}
-                                                        {song.mv != 0 ? (<i className="u-micn u-micn-mv mv z-off f-cp" data-mvid={song.mv} data-tid={song.id}></i>) : ""}
+                                                        {song.mv != 0 ? (<a href={"#/m2/mv/?source=artist&id=" + song.mv}><i className="u-micn u-micn-mv mv z-off f-cp"></i></a>) : ""}
                                                     </span>
                                                 </div>
                                                 <div className="td col ellipsis s-fc3 f-pr" title={song.ar.map(author => (author.name)).join(" / ")}>

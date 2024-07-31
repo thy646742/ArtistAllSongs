@@ -18,6 +18,8 @@ plugin.onLoad(() => {
             return;
         }
 
+        (document.querySelector(".m-yrsh.g-wrap1.q-lrc div.q-lrc") as HTMLDivElement).style.display = null;
+
         if(document.getElementById('allsongs-tab')){
             document.getElementById('allsongs-tab').remove();
         }

@@ -100,6 +100,7 @@ const AllSongsPage = ({ artistId }) => {
                                             data-res-menu="true"
                                             data-res-type="4"
                                             data-res-id={song.id}
+                                            key={song.id}
                                         >
                                             <span className="playstate u-micn u-plyst"></span>
                                             <span

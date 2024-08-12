@@ -24,20 +24,27 @@ const PageController = ({ currentPage, maxPages , onPageChange }) => {
                     下一页
                 </svg>
             </a>
-            <input
-                id="page-jump"
-                type="text"
-                placeholder="页码"
+            <div
+                className="u-lcsch j-flag"
                 style={{
                     verticalAlign: "middle",
-                    width: "30px",
-                    height: "15px",
-                    color: "black",
-                    fontSize: "12px",
-                    marginLeft: "10px"
+                    width: "50px",
+                    height: "30px",
+                    marginLeft: "10px",
+                    display: "inline-block"
                 }}
-                onChange={event => setPageTarget(parseInt(event.target.value, 10))}
-            />
+            >
+                <input
+                    id="page-jump"
+                    type="text"
+                    placeholder="页码"
+                    style={{
+                        fontSize: "12px",
+                        paddingRight: "10px"
+                    }}
+                    onChange={event => setPageTarget(parseInt(event.target.value, 10))}
+                />
+            </div>
             <a className="zpgi" onClick={() => onPageChange(pageTarget)}>跳转</a>
         </div>
     );

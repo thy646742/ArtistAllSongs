@@ -16,7 +16,7 @@ const Config = () => {
             &nbsp;
             <span>禁用插件(重载后生效)</span>
             <br/><br/>
-            <span style={{ userSelect: "text" }}>Github仓库地址: https://github.com/thy646742/ArtistAllSongs</span>
+            <span>Github仓库地址: <a onClick={()=>betterncm.ncm.openUrl("https://github.com/thy646742/ArtistAllSongs")}>https://github.com/thy646742/ArtistAllSongs</a></span>
         </div>
     );
 }

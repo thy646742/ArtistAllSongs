@@ -7,10 +7,11 @@ const AllSongsPage = ({ artistId }) => {
     const [ currentPage, setCurrentPage ] = React.useState(1);
     const [ pageLength, setPageLength ] = React.useState(20);
     const [ totalSongs, setTotalSongs ] = React.useState(0);
+    const [ sortingOrder, setSortingOrder ] = React.useState('hot');
 
     const data = {
         id: artistId,
-        order: 'hot',
+        order: sortingOrder,
         offset: (currentPage - 1) * pageLength,
         limit: pageLength,
         csrf_token: '',
@@ -36,7 +37,7 @@ const AllSongsPage = ({ artistId }) => {
             }
         }
         sendRequest();
-    }, [ pageLength, currentPage ]);
+    }, [ pageLength, currentPage, sortingOrder ]);
 
     const onPageChange = operation => {
         const maxPages = Math.ceil(totalSongs / pageLength);
@@ -51,12 +52,41 @@ const AllSongsPage = ({ artistId }) => {
         }
     }
 
+    const getSortingOrderString = () => {
+        if(sortingOrder === 'hot'){
+            return '热度倒序';
+        }
+        if(sortingOrder === 'time'){
+            return '时间倒序';
+        }
+    }
+
+    const changeOrderButtonOnClick = () => {
+        if(sortingOrder === 'hot'){
+            setSortingOrder('time');
+        }
+        if(sortingOrder === 'time'){
+            setSortingOrder('hot');
+        }
+        setCurrentPage(1);
+    }
+
     // It seems like the data-res like attributes are for providing parameters for interactions
     // But some of them are also detected for styling...
 
     return (
         <div className="m-plylist m-plylist-pl2 m-plylist_playlist m-plylist-sort"
             tabIndex={1000} id="all-songs-list">
+            <div
+                id="all-songs-config"
+                style={{
+                    paddingLeft: "20px",
+                    paddingBottom: "20px"
+                }}
+            >
+                <span style={{ marginRight: "10px" }}>当前排序：{getSortingOrderString()}</span>
+                <a className="u-ibtn5" onClick={changeOrderButtonOnClick}>切换排序方式</a>
+            </div>
             <div className="head sort f-cb j-flag">
                 <div className="fix">
                     <div className="th col">

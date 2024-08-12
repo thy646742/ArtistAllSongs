@@ -36,7 +36,6 @@ plugin.onLoad(() => {
         allSongsTab.appendChild(allSongsText);
         allSongsTab.id = 'allsongs-tab';
         document.querySelector('.m-yrsh.g-wrap1.q-lrc .u-tab2 ul li').parentNode.appendChild(allSongsTab);
-        console.log('created');
 
         const root = document.createElement("div");
         root.id = 'allsongs-page-root';

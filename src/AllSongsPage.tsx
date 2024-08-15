@@ -1,6 +1,7 @@
 import { weapi } from './encrypt';
 import axios from 'axios';
 import { PageController } from './PageController';
+import { ListConfig } from './ListConfig';
 
 const AllSongsPage = ({ artistId }) => {
     const [ songList, setSongList ] = React.useState([]);
@@ -52,16 +53,15 @@ const AllSongsPage = ({ artistId }) => {
         }
     }
 
-    const getSortingOrderString = () => {
-        if(sortingOrder === 'hot'){
-            return '热度倒序';
+    const onPageLengthChange = target => {
+        if(!(target >= 1 && target <= 150)){
+            return;
         }
-        if(sortingOrder === 'time'){
-            return '时间倒序';
-        }
+        setPageLength(target);
+        setCurrentPage(1);
     }
 
-    const changeOrderButtonOnClick = () => {
+    const onOrderChange = () => {
         if(sortingOrder === 'hot'){
             setSortingOrder('time');
         }
@@ -71,22 +71,28 @@ const AllSongsPage = ({ artistId }) => {
         setCurrentPage(1);
     }
 
+    const getSortingOrderString = () => {
+        if(sortingOrder === 'hot'){
+            return '热度倒序';
+        }
+        if(sortingOrder === 'time'){
+            return '时间倒序';
+        }
+    }
+
     // It seems like the data-res like attributes are for providing parameters for interactions
     // But some of them are also detected for styling...
 
     return (
         <div className="m-plylist m-plylist-pl2 m-plylist_playlist m-plylist-sort"
             tabIndex={1000} id="all-songs-list">
-            <div
-                id="all-songs-config"
-                style={{
-                    paddingLeft: "20px",
-                    paddingBottom: "20px"
-                }}
-            >
-                <span style={{ marginRight: "10px" }}>当前排序：{getSortingOrderString()}</span>
-                <a className="u-ibtn5" onClick={changeOrderButtonOnClick}>切换排序方式</a>
-            </div>
+            <ListConfig
+                totalSongs={totalSongs}
+                pageLength={pageLength}
+                sortingOrder={getSortingOrderString()}
+                changePageLengthButtonOnClick={onPageLengthChange}
+                changeOrderButtonOnClick={onOrderChange}
+            />
             <div className="head sort f-cb j-flag">
                 <div className="fix">
                     <div className="th col">
